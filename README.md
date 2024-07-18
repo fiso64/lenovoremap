@@ -29,8 +29,12 @@ Remap F12 to media play/pause
 python lenovoremap.py "F12" "C:\path\ahksend.exe" "-f {Media_Play_Pause}"
 ```
 Remap F10 to type 'hello' in your browser searchbar
-```Hello
+```
 python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
+```
+Remap F9 to type 'a' and shift+F9 to type 'b'
+```
+python lenovoremap.py "F9" "C:\path\ahksend.exe" "C:Shift,b,a"
 ```
 
 ### Usage (ahksend)
@@ -41,6 +45,8 @@ Usage: ahksend [-f] <key> <key>...
  <key>               An autohotkey key combo (like ^!a for Ctrl-Shift-a)
                      S:<ms> sleep for the specified number of milliseconds
                      T:<string> send input as raw text
+                     C:<key>,<true-key>,<false-key> conditional execution
+                     sends true-key if key is held, otherwise false-key
 
  -f                  Steal focus. Focused application will not receive
                      and intercept keypresses.
