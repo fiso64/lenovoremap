@@ -32,10 +32,6 @@ Remap F10 to type 'hello' in your browser searchbar
 ```
 python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
 ```
-Remap F9 to type 'a' and shift+F9 to type 'b'
-```
-python lenovoremap.py "F9" "C:\path\ahksend.exe" "C:Shift,b,a"
-```
 
 ### Usage (ahksend)
 
