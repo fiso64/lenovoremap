@@ -14,12 +14,11 @@ FKEYS = {
     "F12": ("Ex_90", "Ex_90"),
 }
 
-def create_registry_file(key, program, params=None, use_old_keycodes=False, clear=False):
-    key_code = FKEYS[key][1] if use_old_keycodes else FKEYS[key][0]
+def create_registry_file(key, program, params, use_old_keycodes, clear):
+    key_code = FKEYS[key][1] if use_old_keycodes else FKEYS[key][0] 
+    reg_fname = os.path.join(os.path.expanduser('~'), "tmp_pyhotkeymapper.reg")
     
-    filename = os.path.join(os.path.expanduser('~'), "tmp_pyhotkeymapper.reg")
-    
-    with open(filename, "w") as outfile:
+    with open(reg_fname, "w", encoding="utf-8") as outfile:
         outfile.write("Windows Registry Editor Version 5.00\n\n")
         
         if clear:
@@ -30,17 +29,13 @@ def create_registry_file(key, program, params=None, use_old_keycodes=False, clea
             outfile.write("\"AppType\"=dword:00000001\n\n")
             outfile.write(f"[HKEY_LOCAL_MACHINE\\SOFTWARE\\Lenovo\\ShortcutKey\\AppLaunch\\{key_code}\\Desktop]\n")
             outfile.write(f"\"File\"=\"{program}\"\n")
-            if params: 
-                params = params.replace("\\", "\\\\")
-                outfile.write(f"\"Parameters\"=\"{params}\"\n")
-            else:
-                outfile.write(f"\"Parameters\"=-\n")
+            outfile.write(f"\"Parameters\"=\"{params if params else ''}\"\n")
             outfile.write("\n")
         
         outfile.write("[HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Teams]\n\n")
     
-    subprocess.run(["regedit", "/s", filename], check=True)
-    os.remove(filename)
+    subprocess.run(["regedit", "/s", reg_fname], check=True)
+    os.remove(reg_fname)
 
 def main():
     parser = argparse.ArgumentParser(description="Remap Lenovo ThinkPad special keys.")
@@ -52,12 +47,10 @@ def main():
     
     args = parser.parse_args()
 
-    if args.clear:
-        create_registry_file(args.key, None, None, args.old_keycodes, clear=True)
-    else:
-        if args.program is None:
-            parser.error("The 'program' argument is required unless --clear is specified.")
-        create_registry_file(args.key, args.program, args.params if args.params else None, args.old_keycodes)
+    if args.clear != True and not args.program:
+        parser.error("The 'program' argument is required unless --clear is specified.")
+
+    create_registry_file(args.key, args.program, args.params, args.old_keycodes, args.clear)
 
 
 if __name__ == "__main__":
