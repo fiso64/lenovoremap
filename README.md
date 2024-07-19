@@ -2,7 +2,7 @@
 
 Provides Vantage-like F12 customization options for the `F4`-`F12` keys. Python version of https://github.com/csavalas/HotkeyMapper/. The script must be run with administrator rights.
 
-Included program `ahksend.exe` can be used to execute shortcuts, see https://www.autohotkey.com/docs/v2/KeyList.htm and https://www.autohotkey.com/docs/v1/Hotkeys.htm for key reference.
+Included program `ahksend.exe` can be used to execute shortcuts, see https://www.autohotkey.com/docs/v2/lib/Send.htm for key reference.
 
 ### Usage
 ```
@@ -24,11 +24,15 @@ options:
 
 ### Examples
 
-Remap F12 to media play/pause
+Remap F12 to media play/pause:
 ```
 python lenovoremap.py "F12" "C:\path\ahksend.exe" "-f {Media_Play_Pause}"
 ```
-Remap F10 to type 'hello' in your browser searchbar
+Remap F9 to open windows terminal, and shift+F9 to open cmd:
+```
+python lenovoremap.py "F9" "C:\path\ahksend.exe" "C:Shift;R:cmd;R:wt"
+```
+Remap F10 to type 'hello' in your browser searchbar:
 ```
 python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
 ```
@@ -37,13 +41,23 @@ python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
 
 ```
 Usage: ahksend [-f] <key> <key>...
-
- <key>               An autohotkey key combo (like ^!a for Ctrl-Shift-a)
-                     S:<ms> sleep for the specified number of milliseconds
-                     T:<string> send input as raw text
-                     C:<key>,<true-key>,<false-key> conditional execution
-                     sends true-key if key is held, otherwise false-key
-
- -f                  Steal focus. Focused application will not receive
-                     and intercept keypresses.
+ 
+  <key>               <key> is one of the following:
+                        An autohotkey key combo (like ^!a for Ctrl+Shift+a)
+                        See https://www.autohotkey.com/docs/v2/lib/Send.htm
+ 
+                        S:<ms> sleep for the specified number of milliseconds
+ 
+                        T:<text> types the specified text
+ 
+                        R:<command> runs the specified command
+ 
+                        C:<keyname>;<truekey>;<falsekey> sends truekey if
+                        keyname is held, otherwise falsekey.
+                        See https://www.autohotkey.com/docs/v2/KeyList.htm
+                        for accepted keynames. To check multiple keys join
+                        them with +, e.g Control+Shift. 
+ 
+  -f                  Steal focus. Focused application will not receive
+                      and intercept keypresses.
 ```
