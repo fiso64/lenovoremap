@@ -41,7 +41,7 @@ processArg(arg) {
 		Sleep(SubStr(arg, 3))
 	} 
 	else if (o == "T:") {
-		Send(SubStr(arg, 3))
+		SendText(SubStr(arg, 3))
 	} 
 	else if (o == "R:") {
 		Run(SubStr(arg, 3))
