@@ -40,11 +40,11 @@ def create_registry_file(key, program, params, use_old_keycodes, clear):
 
 def main():
     parser = argparse.ArgumentParser(description="Remap Lenovo ThinkPad special keys.")
-    parser.add_argument("key", choices=FKEYS.keys(), help="The key to remap (F4 - F12).")
-    parser.add_argument("program", nargs="?", help="The program to launch. Required unless --clear is used.")
-    parser.add_argument("params", nargs="?", default="", help="The parameters for the program (optional).")
-    parser.add_argument("-o", "--old-keycodes", action="store_true", help="Use old keycodes for older models.")
-    parser.add_argument("-c", "--clear", action="store_true", help="Clear the remapping for the key.")
+    parser.add_argument("key", choices=FKEYS.keys(), help="the key to remap (F4-F12).")
+    parser.add_argument("program", nargs="?", help="fully qualified path of the program to run")
+    parser.add_argument("params", nargs="?", default="", help="the parameters for the program (optional)")
+    parser.add_argument("-o", "--old-keycodes", action="store_true", help="use old keycodes for older thinkpad models")
+    parser.add_argument("-c", "--clear", action="store_true", help="clear the remapping for the key")
     
     args = parser.parse_args()
 
