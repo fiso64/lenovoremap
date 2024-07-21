@@ -4,25 +4,23 @@ Provides Vantage-like F12 customization options for the `F4`-`F12` keys. Python 
 
 Included program `ahksend.exe` can be used to execute shortcuts, see https://www.autohotkey.com/docs/v2/lib/Send.htm for key reference.
 
-### Usage
+## Usage
 ```
-usage: lenovoremap.py [-h] [-o] [-c] {F4,F5,F6,F7,F8,F9,F10,F11,F12} [program] [params]
-
-Remap Lenovo ThinkPad special keys.
+lenovoremap.py [-h] [-o] [-c] {F4,F5,F6,F7,F8,F9,F10,F11,F12} [program] [params]
 
 positional arguments:
   {F4,F5,F6,F7,F8,F9,F10,F11,F12}
-                        The key to remap (F4 - F12).
-  program               The program to launch. Required unless --clear is used.
-  params                The parameters for the program (optional).
+                        the key to remap (F4-F12).
+  program               fully qualified path of the program to run
+  params                the parameters for the program (optional)
 
 options:
   -h, --help            show this help message and exit
-  -o, --old-keycodes    Use old keycodes for older models.
-  -c, --clear           Clear the remapping for the key.
+  -o, --old-keycodes    use old keycodes for older thinkpad models
+  -c, --clear           clear the remapping for the key
 ```
 
-### Examples
+## Examples
 
 Remap F12 to media play/pause:
 ```
@@ -37,7 +35,7 @@ Remap F10 to type 'hello' in your browser searchbar:
 python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
 ```
 
-### Usage (ahksend)
+## Usage (ahksend)
 
 ```
 Usage: ahksend [-f] <key> <key>...
