@@ -1,6 +1,6 @@
 # lenovoremap
 
-Provides Vantage-like F12 customization options for the `F4`-`F12` keys. Python version of https://github.com/csavalas/HotkeyMapper/. The script must be run with administrator rights.
+Provides Vantage-like F12 customization options for the `F4`-`F12` special keys. Python version of https://github.com/csavalas/HotkeyMapper/. The script must be run with administrator rights.
 
 Included program `ahksend.exe` can be used to execute shortcuts, see https://www.autohotkey.com/docs/v2/lib/Send.htm for key reference.
 
@@ -22,17 +22,17 @@ options:
 
 ## Examples
 
-Remap F12 to media play/pause:
+Remap the F12 special key to media play/pause:
 ```
-python lenovoremap.py "F12" "C:\path\ahksend.exe" "-f {Media_Play_Pause}"
+python lenovoremap.py F12 "C:\path\ahksend.exe" "-f {Media_Play_Pause}"
 ```
-Remap F9 to open windows terminal, and shift+F9 to open cmd:
+Remap F11 to open windows terminal, and shift+F11 to open cmd:
 ```
-python lenovoremap.py "F9" "C:\path\ahksend.exe" "C:Shift;R:cmd;R:wt"
+python lenovoremap.py F11 "C:\path\ahksend.exe" "C:Shift;R:cmd;R:wt"
 ```
 Remap F10 to type 'hello' in your browser searchbar:
 ```
-python lenovoremap.py "F10" "C:\path\ahksend.exe" "!d S:100 T:hello"
+python lenovoremap.py F10 "C:\path\ahksend.exe" "!d S:100 T:hello"
 ```
 
 ## Usage (ahksend)
